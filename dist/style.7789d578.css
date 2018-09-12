@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+* {
+  box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px; }
+
+.container {
+  padding: 25px calc((100vw - 960px) / 2); }
+  @media (max-width: 980px) {
+    .container {
+      padding: 25px 10px; } }
+
+.card {
+  width: 200px;
+  height: 200px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  padding: 15px;
+  border-radius: 50%;
+  margin: 15px;
+  background-image: url("pokeball.5d91d586.png");
+  background-size: contain;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .card.caught {
+    background-image: url("poke-ball-open.3a54d943.png"); }
+  .card .name {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 5px; }
+  .card img {
+    height: 100px;
+    max-width: 100%; }
+
+.poke-flex {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; }
