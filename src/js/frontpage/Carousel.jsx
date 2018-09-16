@@ -6,8 +6,12 @@ class Carousel extends Component {
 
     this.state = {
       numberFirstGradient: 100,
-      numberSecondGradient: 80
+      numberSecondGradient: 80,
+      numberFirstWidth: 100,
+      numberSecondWidth: 0,
     };
+
+    this.fadingContinue = true;
 
     this._textFading = this._textFading.bind(this);
     this._textFadingTwo = this._textFadingTwo.bind(this);
@@ -19,7 +23,7 @@ class Carousel extends Component {
   }
 
   componentDidUpdate(newProps, newState) {
-    const header = document.querySelector("#background-header-0");
+    const header = document.querySelector(".background-header-0");
     const bgString = `linear-gradient(to left, rgba(255, 0, 0, 0) ${
       newState.numberFirstGradient
     }%, rgb(235, 235, 235) ${newState.numberSecondGradient}%)`;
@@ -30,12 +34,18 @@ class Carousel extends Component {
   }
 
   render() {
+    let widthStyleFirst = {
+      width: this.state.numberFirstWidth + "%",
+    }
+    let widthStyleSecond = {
+      width: this.state.numberSecondWidth + "%",
+    }
     return (
       <div id="carousel-container">
-        <div id="background-0">
+        <div id="background-0" style={widthStyleFirst}>
           <div className="background-overlay-image">
             <div id="text-box-0" className="text-box">
-              <h1 id="background-header-0">Celine Heldrup</h1>
+              <h1 className="background-header-0">Celine Heldrup</h1>
               <p>Blog og ernæring</p>
             </div>
           </div>
@@ -52,6 +62,7 @@ class Carousel extends Component {
   }
 
   _textFading() {
+    if (!this.fadingContinue) return
     if (this.state.numberFirstGradient > 0) {
       this.state.numberFirstGradient--;
       let newNumberFirstGradient = this.state.numberFirstGradient;
@@ -67,6 +78,7 @@ class Carousel extends Component {
   }
 
   _textFadingTwo() {
+    if (!this.fadingContinue) return
     if (this.state.numberSecondGradient > 0) {
       this.state.numberSecondGradient--;
       let newNumberSecondGradient = this.state.numberSecondGradient;
@@ -82,6 +94,7 @@ class Carousel extends Component {
   }
 
   _textFadingReverse() {
+    this.fadingContinue = false;
     this.state.numberSecondGradient = 80;
     if (this.state.numberFirstGradient < 99) {
       this.state.numberFirstGradient++;
@@ -94,8 +107,14 @@ class Carousel extends Component {
       }, 15);
     } else {
       this.state.numberSecondGradient = 80;
-      return
+      return this._carousel()
     }
+  }
+
+  _carousel() {
+    this.setState({
+      numberFirstWidth: 0
+    })
   }
 }
 

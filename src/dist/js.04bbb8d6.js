@@ -21172,7 +21172,7 @@ var DataSports = function DataSports(props) {
 };
 
 exports.default = DataSports;
-},{"react":"../node_modules/react/index.js"}],"js/shop/index.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"js/shop/shop.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21255,6 +21255,7 @@ var App = function (_Component) {
       return _react2.default.createElement(
         "div",
         null,
+        _react2.default.createElement("div", { className: "navigation-fix" }),
         _react2.default.createElement(
           "div",
           { className: "search" },
@@ -25715,12 +25716,221 @@ var Navigation = function Navigation(props) {
             _reactRouterDom.Link,
             { to: "/shop" },
             "Shop"
+        ),
+        _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: "/blog" },
+            "Blog"
+        ),
+        _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: "/food" },
+            "Food & Nutrition"
         )
     );
 };
 
 exports.default = Navigation;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/es/index.js"}],"js/Application.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/es/index.js"}],"js/loggin/Auth/SignUp.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SingUp = function SingUp() {
+    return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+            "h1",
+            null,
+            "Sign-up"
+        ),
+        _react2.default.createElement(
+            "form",
+            { action: "" },
+            _react2.default.createElement("input", { type: "text", value: props.username, placeholder: "Username" }),
+            _react2.default.createElement("input", { type: "password", value: props.password, placeholder: "Password" })
+        )
+    );
+};
+
+exports.default = SingUp;
+},{"react":"../node_modules/react/index.js"}],"js/loggin/Auth/SignIn.jsx":[function(require,module,exports) {
+
+},{}],"js/loggin/NotFound.jsx":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var NotFound = function NotFound() {
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+            'h1',
+            null,
+            '404 Not Found!'
+        )
+    );
+};
+
+exports.default = NotFound;
+},{"react":"../node_modules/react/index.js"}],"js/loggin/Auth/index.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = require("react-router-dom");
+
+var _SignUp = require("./SignUp");
+
+var _SignUp2 = _interopRequireDefault(_SignUp);
+
+var _SignIn = require("./SignIn");
+
+var _SignIn2 = _interopRequireDefault(_SignIn);
+
+var _NotFound = require("../NotFound");
+
+var _NotFound2 = _interopRequireDefault(_NotFound);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Auth = function (_Component) {
+  _inherits(Auth, _Component);
+
+  function Auth() {
+    _classCallCheck(this, Auth);
+
+    return _possibleConstructorReturn(this, (Auth.__proto__ || Object.getPrototypeOf(Auth)).apply(this, arguments));
+  }
+
+  _createClass(Auth, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+          _reactRouterDom.Switch,
+          null,
+          _react2.default.createElement(
+            _reactRouterDom.Route,
+            { exact: true, path: "/auth/sign-up" },
+            _SignUp2.default
+          ),
+          _react2.default.createElement(
+            _reactRouterDom.Route,
+            { exact: true, path: "/auth/sign-in" },
+            _SignIn2.default
+          ),
+          _react2.default.createElement(
+            _reactRouterDom.Route,
+            null,
+            _NotFound2.default
+          )
+        )
+      );
+    }
+  }]);
+
+  return Auth;
+}(_react.Component);
+
+exports.default = Auth;
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/es/index.js","./SignUp":"js/loggin/Auth/SignUp.jsx","./SignIn":"js/loggin/Auth/SignIn.jsx","../NotFound":"js/loggin/NotFound.jsx"}],"js/loggin/Application.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _index = require("./Auth/index");
+
+var _index2 = _interopRequireDefault(_index);
+
+var _NotFound = require("./NotFound");
+
+var _NotFound2 = _interopRequireDefault(_NotFound);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Application = function (_Component) {
+    _inherits(Application, _Component);
+
+    function Application() {
+        _classCallCheck(this, Application);
+
+        return _possibleConstructorReturn(this, (Application.__proto__ || Object.getPrototypeOf(Application)).apply(this, arguments));
+    }
+
+    _createClass(Application, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                _react.BrowserRouter,
+                null,
+                _react2.default.createElement(
+                    "div",
+                    null,
+                    _react2.default.createElement(
+                        _react.Switch,
+                        null,
+                        _react2.default.createElement(_react.Route, { path: "/auth", component: _index2.default }),
+                        _react2.default.createElement(_react.Route, { component: _NotFound2.default })
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Application;
+}(_react.Component);
+
+exports.default = Application;
+},{"react":"../node_modules/react/index.js","./Auth/index":"js/loggin/Auth/index.jsx","./NotFound":"js/loggin/NotFound.jsx"}],"js/Application.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25737,15 +25947,23 @@ var _Carousel = require("./frontpage/Carousel");
 
 var _Carousel2 = _interopRequireDefault(_Carousel);
 
-var _index = require("./shop/index");
+var _shop = require("./shop/shop");
 
-var _index2 = _interopRequireDefault(_index);
+var _shop2 = _interopRequireDefault(_shop);
 
 var _navigation = require("./navigation/navigation");
 
 var _navigation2 = _interopRequireDefault(_navigation);
 
 var _reactRouterDom = require("react-router-dom");
+
+var _Application = require("./loggin/Application");
+
+var _Application2 = _interopRequireDefault(_Application);
+
+var _NotFound = require("./loggin/NotFound");
+
+var _NotFound2 = _interopRequireDefault(_NotFound);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25777,8 +25995,10 @@ var Application = function (_React$Component) {
           _react2.default.createElement(
             _reactRouterDom.Switch,
             null,
-            _react2.default.createElement(_reactRouterDom.Route, { path: "/shop", component: _index2.default }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: "/", component: _Carousel2.default })
+            _react2.default.createElement(_reactRouterDom.Route, { path: "/auth", component: _Application2.default }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: "/shop", component: _shop2.default }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", component: _Carousel2.default }),
+            _react2.default.createElement(_reactRouterDom.Route, { component: _NotFound2.default })
           )
         )
       );
@@ -25789,7 +26009,7 @@ var Application = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Application;
-},{"react":"../node_modules/react/index.js","./frontpage/Carousel":"js/frontpage/Carousel.jsx","./shop/index":"js/shop/index.jsx","./navigation/navigation":"js/navigation/navigation.jsx","react-router-dom":"../node_modules/react-router-dom/es/index.js"}],"js/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./frontpage/Carousel":"js/frontpage/Carousel.jsx","./shop/shop":"js/shop/shop.jsx","./navigation/navigation":"js/navigation/navigation.jsx","react-router-dom":"../node_modules/react-router-dom/es/index.js","./loggin/Application":"js/loggin/Application.jsx","./loggin/NotFound":"js/loggin/NotFound.jsx"}],"js/index.js":[function(require,module,exports) {
 'use strict';
 
 var _reactDom = require('react-dom');
@@ -25837,7 +26057,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '35295' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '34073' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
