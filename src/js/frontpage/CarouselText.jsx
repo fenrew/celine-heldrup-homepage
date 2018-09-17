@@ -1,17 +1,21 @@
 import React from "react";
 
-const CarouselText = () => {
+const CarouselText = props => {
+    let backgroundImageFirst = {
+        backgroundImage: props.image
+      }
+
   return (
-    <div id="background-0" style={widthStyleFirst}>
+    <div className="background-0" style={Object.assign(props.widthStyle, backgroundImageFirst)}>
       <div className="background-overlay-image">
         <div id="text-box-0" className="text-box">
-          <h1 className="background-header-0">Celine Heldrup</h1>
-          <p>Blog og ernæring</p>
+          <h1 className="background-header-0">{props.headerText}</h1>
+          <p className="background-paragraph-0" style={props.colorStyle}>{props.paragraphText}</p>
         </div>
       </div>
       <button
         className="next-image-carousel button"
-        onClick={() => this._textFadingReverse()}
+        onClick={() => props.textFadingReverse()}
       >
         >
       </button>

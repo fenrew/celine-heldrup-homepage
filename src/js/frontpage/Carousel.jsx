@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import CarouselText from "./CarouselText";
 
 class Carousel extends Component {
   constructor(props) {
@@ -9,6 +10,12 @@ class Carousel extends Component {
       numberSecondGradient: 80,
       numberFirstWidth: 100,
       numberSecondWidth: 0,
+      headerTextOne: "Celine Heldrup", //Celine Heldrup
+      paragraphTextOne: "Blog og Ernæring", //Blog og Ernæring
+      headerTextTwo: "", //Eteriske Oljer
+      paragraphTextTwo: "", //En naturlig kilde til god helse
+      colorStyleFirst: "Transparent",
+      colorStyleSecond: "Transparent",
     };
 
     this.fadingContinue = true;
@@ -35,40 +42,61 @@ class Carousel extends Component {
 
   render() {
     let widthStyleFirst = {
-      width: this.state.numberFirstWidth + "%",
-    }
+      width: this.state.numberFirstWidth + "%"
+    };
     let widthStyleSecond = {
-      width: this.state.numberSecondWidth + "%",
+      width: this.state.numberSecondWidth + "%"
+    };
+    let colorStyleFirst = {
+      color: this.state.colorStyleFirst
     }
-    return (
-      <div id="carousel-container">
-        <div id="background-0" style={widthStyleFirst}>
-          <div className="background-overlay-image">
-            <div id="text-box-0" className="text-box">
-              <h1 className="background-header-0">Celine Heldrup</h1>
-              <p>Blog og ernæring</p>
-            </div>
-          </div>
-          <button
-            className="next-image-carousel button"
-            onClick={() => this._textFadingReverse()}
-          >
-            >
-          </button>
-          <button className="previous-image-carousel button">&lt;</button>
-        </div>
-      </div>
-    );
+    let colorStyleSecond = {
+      color: this.state.colorStyleSecond
+    }
+
+    const carouselObject = [
+      {
+        headerText: this.state.headerTextOne,
+        paragraphText: this.state.paragraphTextOne,
+        image: "url('blueberries.fd24a400.png')",
+        widthStyle: widthStyleFirst,
+        colorStyle: colorStyleFirst
+      },
+      {
+        headerText: this.state.headerTextTwo,
+        paragraphText: this.state.paragraphTextTwo,
+        image: "url('oils-background-image.9045aec5.png')",
+        widthStyle: widthStyleSecond,
+        colorStyle: colorStyleSecond
+      }
+    ];
+
+    let mappedCarouselObject = carouselObject.map((el, index) => {
+      return(
+        <CarouselText
+          key={index}
+          headerText={el.headerText}
+          paragraphText={el.paragraphText}
+          image={el.image}
+          widthStyle={el.widthStyle}
+          textFadingReverse={this._textFadingReverse}
+          colorStyle={el.colorStyle}
+        />
+      )
+    });
+
+    return <div id="carousel-container">{mappedCarouselObject}</div>;
   }
 
   _textFading() {
-    if (!this.fadingContinue) return
+    if (!this.fadingContinue) return;
     if (this.state.numberFirstGradient > 0) {
       this.state.numberFirstGradient--;
       let newNumberFirstGradient = this.state.numberFirstGradient;
       setTimeout(() => {
         this.setState({
-          numberFirstGradient: newNumberFirstGradient
+          numberFirstGradient: newNumberFirstGradient,
+          colorStyleFirst: "rgb(235, 235, 235)"
         });
         return this._textFading();
       }, 15);
@@ -78,7 +106,7 @@ class Carousel extends Component {
   }
 
   _textFadingTwo() {
-    if (!this.fadingContinue) return
+    if (!this.fadingContinue) return;
     if (this.state.numberSecondGradient > 0) {
       this.state.numberSecondGradient--;
       let newNumberSecondGradient = this.state.numberSecondGradient;
@@ -101,20 +129,22 @@ class Carousel extends Component {
       let newNumberFirstGradient = this.state.numberFirstGradient;
       setTimeout(() => {
         this.setState({
-          numberFirstGradient: newNumberFirstGradient
+          numberFirstGradient: newNumberFirstGradient,
+          colorStyleFirst: "transparent"
         });
         return this._textFadingReverse();
       }, 15);
     } else {
       this.state.numberSecondGradient = 80;
-      return this._carousel()
+      return this._carousel();
     }
   }
 
   _carousel() {
     this.setState({
-      numberFirstWidth: 0
-    })
+      numberFirstWidth: 0,
+      numberSecondWidth: 100,
+    });
   }
 }
 

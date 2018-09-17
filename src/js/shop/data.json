@@ -1,12 +1,13 @@
 {
     "data": [
-      {"category": "Sporting Goods",  "price": "$49.99",    "stocked": true,    "name": "Football"},
-      {"category": "Sporting Goods",  "price": "$9.99",     "stocked": true,    "name": "Baseball"},
-      {"category": "Sporting Goods",  "price": "$29.99",    "stocked": false,   "name": "Basketball"},
-      {"category": "Electronics",     "price": "$99.99",    "stocked": true,    "name": "iPod Touch"},
-      {"category": "Electronics",     "price": "$399.99",   "stocked": false,   "name": "iPhone X"},
-      {"category": "Electronics",     "price": "$199.99",   "stocked": true,    "name": "iPad Mini"},
-      {"category": "Sporting Goods",  "price": "$199.99",   "stocked": true,    "name": "Tennis Balls"},
-      {"category": "Electronics",     "price": "$199.99",   "stocked": true,    "name": "Huawei P10"}
+      {"category": "Eteriske Oljer",  "price": "50 kr",    "stocked": true,    "name": "Vill Appelsin"},
+      {"category": "Eteriske Oljer",  "price": "10 kr",     "stocked": true,    "name": "Lavendel"},
+      {"category": "Eteriske Oljer",  "price": "30 kr",    "stocked": true,    "name": "Organo"},
+      {"category": "Eteriske Oljer",  "price": "100 kr",    "stocked": true,    "name": "Peppermynte"},
+      {"category": "Eteriske Oljer",  "price": "400 kr",   "stocked": true,    "name": "Sitron"},
+      {"category": "Eteriske Oljer",  "price": "200 kr",   "stocked": true,    "name": "Frankincense"},
+      {"category": "Eteriske Oljer",  "price": "200 kr",   "stocked": true,    "name": "Rosmarin"},
+      {"category": "Eteriske Oljer",  "price": "200 kr",   "stocked": true,    "name": "On Guard"},
+      {"category": "Eteriske Oljer",  "price": "140 kr",   "stocked": true,    "name": "Digest Zen"}
     ]
   }

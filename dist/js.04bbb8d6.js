@@ -20934,7 +20934,65 @@ if ('development' === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"js/frontpage/Carousel.jsx":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"js/frontpage/CarouselText.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var CarouselText = function CarouselText(props) {
+  var backgroundImageFirst = {
+    backgroundImage: props.image
+  };
+
+  return _react2.default.createElement(
+    "div",
+    { className: "background-0", style: Object.assign(props.widthStyle, backgroundImageFirst) },
+    _react2.default.createElement(
+      "div",
+      { className: "background-overlay-image" },
+      _react2.default.createElement(
+        "div",
+        { id: "text-box-0", className: "text-box" },
+        _react2.default.createElement(
+          "h1",
+          { className: "background-header-0" },
+          props.headerText
+        ),
+        _react2.default.createElement(
+          "p",
+          { className: "background-paragraph-0", style: props.colorStyle },
+          props.paragraphText
+        )
+      )
+    ),
+    _react2.default.createElement(
+      "button",
+      {
+        className: "next-image-carousel button",
+        onClick: function onClick() {
+          return props.textFadingReverse();
+        }
+      },
+      ">"
+    ),
+    _react2.default.createElement(
+      "button",
+      { className: "previous-image-carousel button" },
+      "<"
+    )
+  );
+};
+
+exports.default = CarouselText;
+},{"react":"../node_modules/react/index.js"}],"js/frontpage/Carousel.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -20946,6 +21004,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
+
+var _CarouselText = require("./CarouselText");
+
+var _CarouselText2 = _interopRequireDefault(_CarouselText);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20967,7 +21029,13 @@ var Carousel = function (_Component) {
       numberFirstGradient: 100,
       numberSecondGradient: 80,
       numberFirstWidth: 100,
-      numberSecondWidth: 0
+      numberSecondWidth: 0,
+      headerTextOne: "Celine Heldrup", //Celine Heldrup
+      paragraphTextOne: "Blog og Ernæring", //Blog og Ernæring
+      headerTextTwo: "", //Eteriske Oljer
+      paragraphTextTwo: "", //En naturlig kilde til god helse
+      colorStyleFirst: "Transparent",
+      colorStyleSecond: "Transparent"
     };
 
     _this.fadingContinue = true;
@@ -21004,46 +21072,43 @@ var Carousel = function (_Component) {
       var widthStyleSecond = {
         width: this.state.numberSecondWidth + "%"
       };
+      var colorStyleFirst = {
+        color: this.state.colorStyleFirst
+      };
+      var colorStyleSecond = {
+        color: this.state.colorStyleSecond
+      };
+
+      var carouselObject = [{
+        headerText: this.state.headerTextOne,
+        paragraphText: this.state.paragraphTextOne,
+        image: "url('blueberries.fd24a400.png')",
+        widthStyle: widthStyleFirst,
+        colorStyle: colorStyleFirst
+      }, {
+        headerText: this.state.headerTextTwo,
+        paragraphText: this.state.paragraphTextTwo,
+        image: "url('oils-background-image.9045aec5.png')",
+        widthStyle: widthStyleSecond,
+        colorStyle: colorStyleSecond
+      }];
+
+      var mappedCarouselObject = carouselObject.map(function (el, index) {
+        return _react2.default.createElement(_CarouselText2.default, {
+          key: index,
+          headerText: el.headerText,
+          paragraphText: el.paragraphText,
+          image: el.image,
+          widthStyle: el.widthStyle,
+          textFadingReverse: _this2._textFadingReverse,
+          colorStyle: el.colorStyle
+        });
+      });
+
       return _react2.default.createElement(
         "div",
         { id: "carousel-container" },
-        _react2.default.createElement(
-          "div",
-          { id: "background-0", style: widthStyleFirst },
-          _react2.default.createElement(
-            "div",
-            { className: "background-overlay-image" },
-            _react2.default.createElement(
-              "div",
-              { id: "text-box-0", className: "text-box" },
-              _react2.default.createElement(
-                "h1",
-                { className: "background-header-0" },
-                "Celine Heldrup"
-              ),
-              _react2.default.createElement(
-                "p",
-                null,
-                "Blog og ern\xE6ring"
-              )
-            )
-          ),
-          _react2.default.createElement(
-            "button",
-            {
-              className: "next-image-carousel button",
-              onClick: function onClick() {
-                return _this2._textFadingReverse();
-              }
-            },
-            ">"
-          ),
-          _react2.default.createElement(
-            "button",
-            { className: "previous-image-carousel button" },
-            "<"
-          )
-        )
+        mappedCarouselObject
       );
     }
   }, {
@@ -21057,7 +21122,8 @@ var Carousel = function (_Component) {
         var newNumberFirstGradient = this.state.numberFirstGradient;
         setTimeout(function () {
           _this3.setState({
-            numberFirstGradient: newNumberFirstGradient
+            numberFirstGradient: newNumberFirstGradient,
+            colorStyleFirst: "rgb(235, 235, 235)"
           });
           return _this3._textFading();
         }, 15);
@@ -21096,7 +21162,8 @@ var Carousel = function (_Component) {
         var newNumberFirstGradient = this.state.numberFirstGradient;
         setTimeout(function () {
           _this5.setState({
-            numberFirstGradient: newNumberFirstGradient
+            numberFirstGradient: newNumberFirstGradient,
+            colorStyleFirst: "transparent"
           });
           return _this5._textFadingReverse();
         }, 15);
@@ -21109,7 +21176,8 @@ var Carousel = function (_Component) {
     key: "_carousel",
     value: function _carousel() {
       this.setState({
-        numberFirstWidth: 0
+        numberFirstWidth: 0,
+        numberSecondWidth: 100
       });
     }
   }]);
@@ -21118,9 +21186,9 @@ var Carousel = function (_Component) {
 }(_react.Component);
 
 exports.default = Carousel;
-},{"react":"../node_modules/react/index.js"}],"js/shop/data.json":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./CarouselText":"js/frontpage/CarouselText.jsx"}],"js/shop/data.json":[function(require,module,exports) {
 module.exports = {
-  "data": [{ "category": "Sporting Goods", "price": "$49.99", "stocked": true, "name": "Football" }, { "category": "Sporting Goods", "price": "$9.99", "stocked": true, "name": "Baseball" }, { "category": "Sporting Goods", "price": "$29.99", "stocked": false, "name": "Basketball" }, { "category": "Electronics", "price": "$99.99", "stocked": true, "name": "iPod Touch" }, { "category": "Electronics", "price": "$399.99", "stocked": false, "name": "iPhone X" }, { "category": "Electronics", "price": "$199.99", "stocked": true, "name": "iPad Mini" }, { "category": "Sporting Goods", "price": "$199.99", "stocked": true, "name": "Tennis Balls" }, { "category": "Electronics", "price": "$199.99", "stocked": true, "name": "Huawei P10" }]
+  "data": [{ "category": "Eteriske Oljer", "price": "50 kr", "stocked": true, "name": "Vill Appelsin" }, { "category": "Eteriske Oljer", "price": "10 kr", "stocked": true, "name": "Lavendel" }, { "category": "Eteriske Oljer", "price": "30 kr", "stocked": true, "name": "Organo" }, { "category": "Eteriske Oljer", "price": "100 kr", "stocked": true, "name": "Peppermynte" }, { "category": "Eteriske Oljer", "price": "400 kr", "stocked": true, "name": "Sitron" }, { "category": "Eteriske Oljer", "price": "200 kr", "stocked": true, "name": "Frankincense" }, { "category": "Eteriske Oljer", "price": "200 kr", "stocked": true, "name": "Rosmarin" }, { "category": "Eteriske Oljer", "price": "200 kr", "stocked": true, "name": "On Guard" }, { "category": "Eteriske Oljer", "price": "140 kr", "stocked": true, "name": "Digest Zen" }]
 };
 },{}],"js/shop/DataElectronics.jsx":[function(require,module,exports) {
 "use strict";
@@ -21157,41 +21225,6 @@ var DataElectronics = function DataElectronics(props) {
 };
 
 exports.default = DataElectronics;
-},{"react":"../node_modules/react/index.js"}],"js/shop/DataSports.jsx":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var DataSports = function DataSports(props) {
-  var outOfStock = void 0;
-  if (!props.stocked) outOfStock = {
-    color: "red"
-  };
-  return _react2.default.createElement(
-    "tr",
-    null,
-    _react2.default.createElement(
-      "td",
-      { style: outOfStock },
-      props.name
-    ),
-    _react2.default.createElement(
-      "td",
-      null,
-      props.price
-    )
-  );
-};
-
-exports.default = DataSports;
 },{"react":"../node_modules/react/index.js"}],"js/shop/shop.jsx":[function(require,module,exports) {
 "use strict";
 
@@ -21213,10 +21246,6 @@ var _DataElectronics = require("./DataElectronics");
 
 var _DataElectronics2 = _interopRequireDefault(_DataElectronics);
 
-var _DataSports = require("./DataSports");
-
-var _DataSports2 = _interopRequireDefault(_DataSports);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21234,8 +21263,7 @@ var App = function (_Component) {
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
     _this.state = {
-      sport: [],
-      electronic: [],
+      ethericOils: [],
       search: ""
     };
 
@@ -21246,30 +21274,26 @@ var App = function (_Component) {
   _createClass(App, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var filteredSport = _data2.default.data.filter(function (el) {
-        return el.category === "Sporting Goods";
+      var filteredOils = _data2.default.data.filter(function (el) {
+        return el.category === "Eteriske Oljer";
       });
-      var filteredElectronics = _data2.default.data.filter(function (el) {
-        return el.category === "Electronics";
-      });
-      this.setState({ sport: filteredSport, electronic: filteredElectronics });
+      this.setState({ ethericOils: filteredOils });
     }
   }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      var newMappedElectronics = this.state.electronic.filter(function (el) {
+      var newMappedOils = this.state.ethericOils.filter(function (el) {
         return el.name.toLowerCase().includes(_this2.state.search);
       });
-      var newMappedSports = this.state.sport.filter(function (el) {
-        return el.name.toLowerCase().includes(_this2.state.search);
-      });
-      var mappedElectronicProducts = newMappedElectronics.map(function (el, index) {
-        return _react2.default.createElement(_DataElectronics2.default, { name: el.name, price: el.price, stocked: el.stocked, key: index });
-      });
-      var mappedSportsProducts = newMappedSports.map(function (el, index) {
-        return _react2.default.createElement(_DataSports2.default, { name: el.name, price: el.price, stocked: el.stocked, key: index });
+      var mappedOilProducts = newMappedOils.map(function (el, index) {
+        return _react2.default.createElement(_DataElectronics2.default, {
+          name: el.name,
+          price: el.price,
+          stocked: el.stocked,
+          key: index
+        });
       });
 
       return _react2.default.createElement(
@@ -21278,62 +21302,66 @@ var App = function (_Component) {
         _react2.default.createElement("div", { className: "navigation-fix" }),
         _react2.default.createElement(
           "div",
-          { className: "search" },
+          { className: "shop-flexbox-container" },
           _react2.default.createElement(
-            "form",
-            null,
-            _react2.default.createElement("input", { type: "text", placeholder: "Search...", onChange: function onChange(event) {
-                return _this2._handleQuery(event);
-              } }),
-            _react2.default.createElement("br", null),
-            _react2.default.createElement("input", { type: "checkbox", name: "checkbox" }),
+            "div",
+            { className: "shop-background-overlay" },
+            _react2.default.createElement("div", { className: "shop-navigation" }),
             _react2.default.createElement(
-              "label",
-              { htmlFor: "checkbox" },
-              "Only show products in stock"
-            )
-          )
-        ),
-        _react2.default.createElement(
-          "table",
-          null,
-          _react2.default.createElement(
-            "tbody",
-            null,
-            _react2.default.createElement(
-              "tr",
-              null,
+              "div",
+              { className: "search-and-shop-container" },
               _react2.default.createElement(
-                "th",
-                null,
-                "Name"
+                "div",
+                { className: "search" },
+                _react2.default.createElement(
+                  "form",
+                  null,
+                  _react2.default.createElement("input", {
+                    type: "text",
+                    className: "search-input",
+                    placeholder: "Search...",
+                    onChange: function onChange(event) {
+                      return _this2._handleQuery(event);
+                    }
+                  }),
+                  _react2.default.createElement("br", null),
+                  _react2.default.createElement("input", { type: "checkbox", name: "checkbox" }),
+                  _react2.default.createElement(
+                    "label",
+                    { htmlFor: "checkbox" },
+                    "Only show products in stock"
+                  )
+                )
               ),
               _react2.default.createElement(
-                "th",
+                "table",
                 null,
-                "Price"
+                _react2.default.createElement(
+                  "tbody",
+                  null,
+                  _react2.default.createElement(
+                    "tr",
+                    null,
+                    _react2.default.createElement(
+                      "th",
+                      null,
+                      "Eteriske Oljer"
+                    ),
+                    _react2.default.createElement(
+                      "th",
+                      null,
+                      "Pris"
+                    ),
+                    _react2.default.createElement(
+                      "th",
+                      null,
+                      "Kj\xF8p"
+                    )
+                  ),
+                  mappedOilProducts
+                )
               )
-            ),
-            _react2.default.createElement(
-              "tr",
-              null,
-              _react2.default.createElement(
-                "th",
-                null,
-                "Sporting Goods"
-              )
-            ),
-            mappedSportsProducts,
-            _react2.default.createElement(
-              "tr",
-              null,
-              _react2.default.createElement(
-                "th",
-                null,
-                "Electronics"
-              )
-            ),
-            mappedElectronicProducts
+            )
           )
         )
       );
@@ -21351,7 +21379,7 @@ var App = function (_Component) {
 }(_react.Component);
 
 exports.default = App;
-},{"react":"../node_modules/react/index.js","./data.json":"js/shop/data.json","./DataElectronics":"js/shop/DataElectronics.jsx","./DataSports":"js/shop/DataSports.jsx"}],"../node_modules/warning/warning.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./data.json":"js/shop/data.json","./DataElectronics":"js/shop/DataElectronics.jsx"}],"../node_modules/warning/warning.js":[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -25729,7 +25757,7 @@ var Navigation = function Navigation(props) {
         { id: "navigation-bar" },
         _react2.default.createElement(
             _reactRouterDom.Link,
-            { to: "/home" },
+            { to: "/" },
             "Home"
         ),
         _react2.default.createElement(
@@ -26077,7 +26105,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '43515' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '36527' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

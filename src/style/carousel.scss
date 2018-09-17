@@ -5,8 +5,10 @@
   flex-direction: row;
 }
 
-#background-0 {
-  background-image: url("../assets/blueberries.png");
+.background-0 {
+  // background-image: url("../assets/blueberries.png");
+  // background-image: url("../assets/oils-background-image.png");
+  // background-image: url("../assets/heart-oil-background.png");
   background-size: 100% 100%;
   width: 100%;
   margin: 0 auto;
@@ -23,6 +25,20 @@
   color: rgb(255, 255, 255);
 }
 
+.background-paragraph-0 {
+  transition: color 1.5s ease-in-out;
+}
+
+#background-1 {
+  background-image: url("../assets/oils-background-image.png");
+  background-size: 100% 100%;
+  width: 0%;
+  margin: 0 auto;
+  color: rgb(243, 243, 243);
+  transition: width 2s ease-in-out, color 2s ease-in-out;
+  /* filter: grayscale(100%); */
+}
+
 .background-overlay-image {
   background-color: rgba(0, 0, 0, 0.493);
   height: 100%;
@@ -30,7 +46,7 @@
 
 .text-box {
   text-align: center;
-  padding-top: 32vh;
+  padding-top: 34vh;
   font-family: "El Messiri", sans-serif;
 }
 
@@ -41,7 +57,7 @@
 
 .button {
   background-color: transparent;
-  top: 40%;
+  top: 40vh;
   border: 0px;
   font-size: 10vw;
   transform: scale(0.5, 1);
